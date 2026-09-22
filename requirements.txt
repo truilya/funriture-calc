@@ -1,3 +1,4 @@
 httpx
 pandas
 pillow==10.4.0
+httptools==0.6.4
