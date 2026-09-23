@@ -33,23 +33,45 @@ REQUEST_TIMEOUT = 90.0  # секунд на один запрос к API
 
 PROVIDERS: dict[str, dict[str, Any]] = {
     "OpenAI": {
-        "base_url": "https://api.openai.com/v1",
-        "models": ["gpt-4o-mini", "gpt-4o", "gpt-4.1-mini"],
+        "base_url": "https://openai.com",
+        "models": [
+            "gpt-4o-mini",
+            "gpt-4o",
+            "gpt-5.6-sol",  # Флагман с нативной песочницей Python (наш №2 в рейтинге)
+            "gpt-5.6-luna"  # Экономичная версия флагмана от OpenAI
+        ],
     },
     "OpenRouter": {
-        "base_url": "https://openrouter.ai/api/v1",
+        "base_url": "https://openrouter.ai",
         "models": [
+            # --- Модели из рейтинга распознавания и маппинга таблиц ---
+            "anthropic/claude-sonnet-5",  # 🥇 Абсолютный лидер по точности OCR (Claude 5 Sonnet)
+            "openai/gpt-5.6-sol",  # 🥈 Лучшая автономная сборка Excel и расчет формул
+            "google/gemini-3.1-flash-lite",  # 🥉 Король экономии на огромных потоках документов
+            "deepseek/deepseek-v4-pro",  # 4. Превосходный баланс цены и логики маппинга
+            "qwen/qwen-2.5-vl-72b-instruct",  # 5. Лучшая Vision-модель для сложных визуальных сканов
+
+            # --- Базовые модели из прошлой конфигурации ---
             "openai/gpt-4o-mini",
             "anthropic/claude-3.5-haiku",
-            "google/gemini-flash-1.5",
-            "meta-llama/llama-3.1-70b-instruct",
+            "meta-llama/llama-3.1-70b-instruct"
         ],
     },
     "Groq": {
-        "base_url": "https://api.groq.com/openai/v1",
-        "models": ["llama-3.3-70b-versatile", "llama-3.1-8b-instant", "mixtral-8x7b-32768"],
+        "base_url": "https://groq.com",
+        "models": [
+            "llama-3.3-70b-versatile",
+            "llama-3.1-8b-instant",
+            "mixtral-8x7b-32768"
+        ],
     },
-    "Свой endpoint": {"base_url": "", "models": []},
+    "Свой endpoint": {
+        "base_url": "http://localhost:11434/v1",  # URL для локального Ollama или vLLM инференса
+        "models": [
+            "deepseek-r1:70b",  # Локальный аналог для сложных рассуждений и маппинга
+            "qwen2.5-vl:72b"  # On-premise альтернатива для приватного распознавания таблиц
+        ],
+    },
 }
 
 SYSTEM_PROMPT = (
