@@ -1,6 +1,6 @@
 httpx
 pandas
-pillow==10.4.0
-httptools==0.6.4
+pillow==12.3.0
+httptools==0.8.0
 openpyxl==3.1.5
-pypdf==5.3.1
+pypdf==6.19.0
